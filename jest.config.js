@@ -19,6 +19,7 @@ module.exports = {
   moduleNameMapper: {
     // 별칭 @(프로젝트/src) 사용하여 하위 경로의 파일을 맵핑합니다
     "^@/(.*)$": "<rootDir>/src/$1",
+    axios: "axios/dist/node/axios.cjs",
   },
   // testMatch도 필수설정은 아닌것 같습니다
   // testMatch를 설정하지 않아도 .sepc.js나 .test.js를 알아서 찾아서 테스트해주긴 합니다.
@@ -30,6 +31,6 @@ module.exports = {
   ],
   // node_modules 경로 하위에 있는 모든 테스트 파일을 대상에서 제외합니다
   testPathIgnorePatterns: ["/node_modules/"],
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ["**/*.{js,vue}", "!**/node_modules/**"],
 };

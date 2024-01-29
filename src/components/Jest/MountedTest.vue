@@ -10,7 +10,21 @@ export default {
   mounted() {
     this.$refs.firstRef.innerText = "1234";
     this.$refs.secondRef.innerText = "4321";
+    this.axiosCall();
   },
-  methods: {},
+  methods: {
+    axiosCall() {
+      this.$axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((res) => {
+          console.log(res);
+        });
+    },
+
+    funTest() {
+      this.$refs.firstRef.innerText = "1234";
+      this.$refs.secondRef.innerText = "4321";
+    },
+  },
 };
 </script>

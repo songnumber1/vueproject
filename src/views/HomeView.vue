@@ -1,25 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <button @click="btnClick">1234</button>
+    <img alt="Vue logo" src="../assets/logo.png" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import { routerFunc } from '../router/index'
-
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+  name: "HomeView",
+  mounted() {
+    this.axiosCall();
   },
   methods: {
-    btnClick() {
-      routerFunc();
-    }
-  }
-}
+    axiosCall() {
+      this.$axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((res) => {
+          console.log(res);
+        });
+    },
+  },
+};
 </script>
