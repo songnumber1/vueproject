@@ -7,20 +7,22 @@
 <script>
 export default {
   name: "MountedTest",
+
   mounted() {
-    this.$refs.firstRef.innerText = "1234";
-    this.$refs.secondRef.innerText = "4321";
     this.axiosCall();
   },
+
   methods: {
     axiosCall() {
       this.$axios
         .get("https://jsonplaceholder.typicode.com/users")
         .then((res) => {
+          /* istanbul ignore next */
           console.log(res);
         });
     },
 
+    /* istanbul ignore next */
     funTest() {
       this.$refs.firstRef.innerText = "1234";
       this.$refs.secondRef.innerText = "4321";

@@ -31,6 +31,6 @@ module.exports = {
   ],
   // node_modules 경로 하위에 있는 모든 테스트 파일을 대상에서 제외합니다
   testPathIgnorePatterns: ["/node_modules/"],
-  collectCoverage: false,
+  collectCoverage: true,
   collectCoverageFrom: ["**/*.{js,vue}", "!**/node_modules/**"],
 };

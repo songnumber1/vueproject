@@ -14,7 +14,7 @@ jest.mock("axios");
 
 let wrapper;
 
-beforeEach(() => {
+beforeAll(() => {
   const users = [{ name: "Bob" }];
   const resp = { data: users };
   jest.mock("axios", () => Object.assign(jest.fn(), { get: jest.fn() }));
@@ -28,7 +28,7 @@ beforeEach(() => {
   });
 });
 
-afterEach(() => {
+afterAll(() => {
   jest.clearAllMocks();
 });
 
@@ -44,4 +44,20 @@ describe("MountedTest.vue", () => {
     const firstText = wrapper.find("#first").text();
     expect(firstText).toEqual("1234");
   });
+
+  // it("MountedTest axios Mounted", () => {
+  //   const mockGet = jest.spyOn(axios, "get");
+  //   mockGet.mockImplementation((url) => {
+  //     switch (url) {
+  //       case "https://jsonplaceholder.typicode.com/users":
+  //         return Promise.resolve({ data: 1 });
+  //       case "api/letters":
+  //         return Promise.resolve({ data: "a" });
+  //     }
+  //   });
+
+  //   wrapper.wm.axiosCall();
+
+  //   expect(mockGet).toEqual({ data: 1 });
+  // });
 });
