@@ -5,50 +5,39 @@ import axios from "axios";
 const logSpy = jest.spyOn(console, "log");
 
 jest.mock("axios");
+
 // jest.mock("axios", () => ({
 //   __esModule: true,
 //   get: jest.fn(() => Promise.resolve({ data: "data" })),
 //   default: jest.fn(() => Promise.resolve({ data: "data" })),
 // }));
 
-describe("MountedTest.vue", () => {
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
+let wrapper;
 
-  it("MountedTest 컴포턴트 Mounted", () => {
-    expect(MountedTest).toBeTruthy();
-  });
+beforeEach(() => {
+  const users = [{ name: "Bob" }];
+  const resp = { data: users };
+  jest.mock("axios", () => Object.assign(jest.fn(), { get: jest.fn() }));
 
-  it("MountedTest axios Mounted", () => {
-    const users = [{ name: "Bob" }];
-    const resp = { data: users };
-    jest.mock("axios", () => Object.assign(jest.fn(), { get: jest.fn() }));
-
-    const wrapper = shallowMount(MountedTest, {
-      mocks: {
-        $axios: {
-          get: jest.fn().mockImplementation(() => Promise.resolve(resp)),
-        },
+  wrapper = shallowMount(MountedTest, {
+    mocks: {
+      $axios: {
+        get: jest.fn().mockImplementation(() => Promise.resolve(resp)),
       },
-    });
+    },
+  });
+});
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+describe("MountedTest.vue", () => {
+  it("MountedTest axios Mounted", () => {
     expect(wrapper.wm).toBe();
   });
 
   it("MountedTest axios Mounted", () => {
-    const users = [{ name: "Bob" }];
-    const resp = { data: users };
-    jest.mock("axios", () => Object.assign(jest.fn(), { get: jest.fn() }));
-
-    const wrapper = shallowMount(MountedTest, {
-      mocks: {
-        $axios: {
-          get: jest.fn().mockImplementation(() => Promise.resolve(resp)),
-        },
-      },
-    });
-
     expect(wrapper.find("span").exists()).toBe(false);
     expect(wrapper.find("p").exists()).toBe(true);
 
