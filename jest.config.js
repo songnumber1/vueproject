@@ -3,7 +3,7 @@ module.exports = {
   // (vue-cli로 설치 시 기본 세팅됨) vue-cli 테스트 환경 설정을 사용합니다
   // 주의! preset 지정 후 아래와 같이 각각 다시 설정하는 경우, 새로 설정한 내용으로 적용됩니다
   // 문제의 원인!!! preset에 주의합니다.
-  preset: "@vue/cli-plugin-unit-jest",
+  // preset: "@vue/cli-plugin-unit-jest",
   moduleFileExtensions: [
     "js",
     "json",

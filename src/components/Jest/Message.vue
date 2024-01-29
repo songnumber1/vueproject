@@ -10,7 +10,6 @@ export default {
   name: "message",
   props: ["msg"],
   methods: {
-    /* istanbul ignore next */
     ignoreFunctionTest() {},
 
     noticeFunctionTest() {},
