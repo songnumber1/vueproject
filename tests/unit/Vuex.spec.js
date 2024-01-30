@@ -1,8 +1,8 @@
 import { shallowMount } from "@vue/test-utils";
-import Vuex from "@/components/Jest/Jest.vue";
+import Vuex from "@/components/Jest/Vuex.vue";
 
-describe("Jest.vue", () => {
-  it("MountedTest axios Mounted", () => {
+describe("Vuex.vue", () => {
+  it("Vuex", () => {
     const wrapper = shallowMount(Vuex);
 
     expect(wrapper.wm).toBeTruthy();
