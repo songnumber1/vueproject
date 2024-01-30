@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import store from "@/store";
+import store from "@/store";
 // import * as getters from "@/store/modules/user/getters";
 import { mapGetters } from "vuex";
 
@@ -19,13 +19,25 @@ export default {
 
   methods: {
     MutationCall() {
+      // mock 정상동작한다.
       this.$store.commit("user/setLogin", {
         isLogin: true,
       });
+
+      // mock 정상동작하지 않는다.
+      // store.commit("user/setLogin", {
+      //   isLogin: true,
+      // });
     },
 
     GetterCall() {
+      // mock 정상동작한다.
       console.log(this.$store.getters["user/getIsLogin"]);
+
+      // mock 정상동작하지 않는다.
+      console.log(store.getters["user/getIsLogin"]);
+
+      // mock 정상동작한다.
       console.log(this.getIsLogin);
 
       // // 값이 안나온다

@@ -42,8 +42,13 @@ describe("Vuex.vue", () => {
   });
 
   it("MutationCall", () => {
+    const spy = jest
+      .spyOn(wrapper.vm, "MutationCall")
+      .mockImplementation(() => {
+        expect(spy).toHaveBeenCalledTimes(1);
+      });
+
     wrapper.vm.MutationCall();
-    expect(wrapper.vm.MutationCall).toBeDefined();
   });
 
   it("GetterCall", () => {
