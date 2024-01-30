@@ -28,14 +28,14 @@ export default {
       console.log(store.getters["user/getIsLogin"]);
       console.log(this.getIsLogin);
 
-      // 값이 안나온다
-      console.log(getters.default.getIsLogin);
+      // // 값이 안나온다
+      // console.log(getters.default.getIsLogin);
 
-      // 값이 안나온다
-      console.log(getters["getIsLogin"]);
+      // // 값이 안나온다
+      // console.log(getters["getIsLogin"]);
 
-      // 값이 안나온다
-      console.log(getters.getIsLogin);
+      // // 값이 안나온다
+      // console.log(getters.getIsLogin);
     },
   },
 };
