@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import store from "@/store";
-import * as getters from "@/store/modules/user/getters";
+// import store from "@/store";
+// import * as getters from "@/store/modules/user/getters";
 import { mapGetters } from "vuex";
 
 export default {
@@ -19,13 +19,13 @@ export default {
 
   methods: {
     MutationCall() {
-      store.commit("user/setLogin", {
+      this.$store.commit("user/setLogin", {
         isLogin: true,
       });
     },
 
     GetterCall() {
-      console.log(store.getters["user/getIsLogin"]);
+      console.log(this.$store.getters["user/getIsLogin"]);
       console.log(this.getIsLogin);
 
       // // 값이 안나온다
