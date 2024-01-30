@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "Vuex",
+  name: "VuexTest",
 
   methods: {
     MutationCall() {

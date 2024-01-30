@@ -1,10 +1,52 @@
 import { shallowMount } from "@vue/test-utils";
-import Vuex from "@/components/Jest/Vuex.vue";
+import VuexTest from "@/components/Jest/VuexTest.vue";
+import Vuex from "vuex";
+import Vue from "vue";
+
+Vue.use(Vuex);
 
 describe("Vuex.vue", () => {
-  it("Vuex", () => {
-    const wrapper = shallowMount(Vuex);
+  let mutations;
+  let getters;
+  let store;
+  let wrapper;
 
-    expect(wrapper.wm).toBeTruthy();
+  beforeAll(() => {
+    mutations = {
+      setLogin: jest.fn(),
+    };
+
+    getters = {
+      getIsLogin: () => true,
+    };
+
+    let user = {
+      namespaced: true,
+      state: {},
+      mutations,
+      getters,
+    };
+
+    store = new Vuex.Store({
+      modules: {
+        user,
+      },
+    });
+
+    wrapper = shallowMount(VuexTest, { store: store });
+  });
+
+  it("Vuex", () => {
+    expect(wrapper.vm).toBeTruthy();
+  });
+
+  it("MutationCall", () => {
+    wrapper.vm.MutationCall();
+    expect(wrapper.vm.MutationCall).toBeDefined();
+  });
+
+  it("GetterCall", () => {
+    wrapper.vm.GetterCall();
+    expect(wrapper.vm.GetterCall).toBeDefined();
   });
 });
