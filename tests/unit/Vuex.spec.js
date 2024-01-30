@@ -17,7 +17,8 @@ describe("Vuex.vue", () => {
     };
 
     getters = {
-      getIsLogin: () => true,
+      // getIsLogin: () => true,
+      getIsLogin: jest.fn(),
     };
 
     let user = {
