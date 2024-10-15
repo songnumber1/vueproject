@@ -10,25 +10,28 @@
   "dependencies": {
     "axios": "^1.6.7",
     "core-js": "^3.8.3",
+    "moment-timezone": "^0.5.46",
+    "monent": "^0.0.2-security",
     "vue": "2.6.14",
     "vue-router": "^3.5.1",
+    "vueproject": "file:",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.8",
     "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "^4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "handlebars": "^4.5.0",
-    "vue-template-compiler": "2.6.14",
-    "@babel/preset-env": "^7.23.8",
-    "@vue/cli-plugin-eslint": "^4.5.0",
-    "@vue/cli-plugin-unit-jest": "^4.5.0",
+    "@vue/test-utils": "^1.1.1",
     "@vue/vue2-jest": "^26.0.1",
     "babel-jest": "^21.2.0",
+    "handlebars": "^4.5.0",
     "jest": "^21.2.1",
-    "@vue/test-utils": "^1.1.1",
-    "vue-jest": "^3.0.7"
+    "vue-jest": "^3.0.7",
+    "vue-template-compiler": "2.6.14"
   },
   "browserslist": [
     "> 1%",
