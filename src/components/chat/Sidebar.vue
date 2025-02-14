@@ -1,9 +1,32 @@
 <template>
-  <div class="sidebar">
-    <h3>Chats</h3>
-    <ul>
-      <li v-for="chat in chats" :key="chat.id">{{ chat.name }}</li>
-    </ul>
+  <div
+    :class="['sidebar', { collapsed: isCollapsed }]"
+    class="bg-dark text-white p-3"
+  >
+    <!-- Toggle button for Sidebar -->
+    <button
+      @click="toggleSidebar"
+      class="btn btn-outline-light w-100 d-flex align-items-center"
+    >
+      <i
+        :class="isCollapsed ? 'bi bi-chevron-right' : 'bi bi-chevron-left'"
+      ></i>
+      <span v-if="!isCollapsed" class="ms-2">Menu</span>
+    </button>
+
+    <!-- Menu Items, show only when sidebar is not collapsed -->
+    <div v-if="!isCollapsed" class="mt-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <router-link to="/" class="nav-link text-white">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/settings" class="nav-link text-white"
+            >Settings</router-link
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -11,11 +34,13 @@
 export default {
   data() {
     return {
-      chats: [
-        { id: 1, name: "John Doe" },
-        { id: 2, name: "Jane Smith" },
-      ],
+      isCollapsed: false,
     };
+  },
+  methods: {
+    toggleSidebar() {
+      this.isCollapsed = !this.isCollapsed;
+    },
   },
 };
 </script>
@@ -23,19 +48,43 @@ export default {
 <style scoped>
 .sidebar {
   width: 250px;
-  background: #f4f4f4;
-  padding: 20px;
-  border-right: 1px solid #ddd;
+  height: 100%;
+  transition: width 0.3s;
 }
-ul {
-  list-style: none;
-  padding: 0;
+
+.sidebar.collapsed {
+  width: 80px;
 }
-li {
-  padding: 10px;
-  cursor: pointer;
+
+.nav-link {
+  color: white !important;
 }
-li:hover {
-  background: #ddd;
+
+.btn {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Make the button span 100% width */
+}
+
+.ms-2 {
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 80px;
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+  }
+
+  .sidebar .nav-link {
+    font-size: 12px;
+  }
 }
 </style>

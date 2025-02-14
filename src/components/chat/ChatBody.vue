@@ -1,25 +1,21 @@
 <template>
-  <div class="chat-body">
-    <!-- 채팅 메시지 목록 -->
-    <div class="messages">
-      <div
-        v-for="message in messages"
-        :key="message.id"
-        :class="['message', message.sender === 'me' ? 'sent' : 'received']"
-      >
-        {{ message.text }}
+  <div
+    class="chat-body p-3"
+    style="height: calc(100% - 120px); overflow-y: auto"
+  >
+    <!-- Chat messages -->
+    <div
+      v-for="(message, index) in messages"
+      :key="index"
+      class="chat-message mb-2"
+      :class="{
+        sender: message.sender === 'self',
+        receiver: message.sender === 'other',
+      }"
+    >
+      <div class="message">
+        <strong>{{ message.user }}:</strong> {{ message.text }}
       </div>
-    </div>
-
-    <!-- 입력 폼 (하단 고정) -->
-    <div class="chat-input">
-      <input
-        v-model="newMessage"
-        type="text"
-        placeholder="Type a message..."
-        @keyup.enter="sendMessage"
-      />
-      <button @click="sendMessage">📩</button>
     </div>
   </div>
 </template>
@@ -28,31 +24,29 @@
 export default {
   data() {
     return {
+      newMessage: "", // 새로운 메시지
       messages: [
-        { id: 1, sender: "me", text: "Hello!" },
-        { id: 2, sender: "other", text: "Hi there!" },
-      ],
-      newMessage: "",
+        { user: "John Doe", sender: "other", text: "Hello, how are you?" }, // 수신자 메시지
+        { user: "You", sender: "self", text: "I am fine, thank you!" }, // 송신자 메시지
+      ], // 채팅 메시지 목록
     };
   },
   methods: {
+    // 메시지 전송
     sendMessage() {
-      if (this.newMessage.trim() === "") return;
-
-      this.messages.push({
-        id: this.messages.length + 1,
-        sender: "me",
-        text: this.newMessage,
-      });
-
-      this.newMessage = ""; // 입력창 초기화
-      this.scrollToBottom();
-    },
-    scrollToBottom() {
-      this.$nextTick(() => {
-        const messagesContainer = this.$el.querySelector(".messages");
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-      });
+      if (this.newMessage.trim() !== "") {
+        this.messages.push({
+          user: "You", // 송신자 이름
+          sender: "self", // 송신자
+          text: this.newMessage,
+        });
+        this.newMessage = ""; // 메시지 전송 후 입력창 비우기
+        this.$nextTick(() => {
+          // 새로운 메시지가 추가된 후 스크롤을 맨 아래로 이동
+          const chatBody = this.$el.querySelector(".chat-body");
+          //chatBody.scrollTop = chatBody.scrollHeight;
+        });
+      }
     },
   },
 };
@@ -60,69 +54,50 @@ export default {
 
 <style scoped>
 .chat-body {
+  background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  padding: 15px;
-  background: #e9ecef;
-  overflow: hidden;
+  justify-content: flex-end;
+  overflow-y: auto; /* 스크롤 가능 */
+  height: 100%; /* 부모 요소에 맞게 채워짐 */
 }
 
-.messages {
-  flex: 1;
-  overflow-y: auto;
+.chat-message {
   display: flex;
-  flex-direction: column;
-  padding-bottom: 10px;
+  align-items: flex-start;
+}
+
+.sender {
+  justify-content: flex-end; /* 송신자 메시지 오른쪽 정렬 */
+  text-align: right;
+}
+
+.receiver {
+  justify-content: flex-start; /* 수신자 메시지 왼쪽 정렬 */
+  text-align: left;
 }
 
 .message {
+  background-color: #e9ecef;
   padding: 10px;
-  border-radius: 5px;
-  margin: 5px 0;
-  max-width: 60%;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
 }
 
-.sent {
-  background: #007bff;
+.sender .message {
+  background-color: #007bff;
   color: white;
-  align-self: flex-end;
 }
 
-.received {
-  background: white;
-  border: 1px solid #ddd;
-  align-self: flex-start;
+.receiver .message {
+  background-color: #e9ecef;
 }
 
-/* 입력창 스타일 */
-.chat-input {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-top: 1px solid #ddd;
-  background: white;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 8px;
+input[type="text"] {
   border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-
-.chat-input button {
-  margin-left: 10px;
-  padding: 8px 12px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.chat-input button:hover {
-  background: #0056b3;
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
 }
 </style>
