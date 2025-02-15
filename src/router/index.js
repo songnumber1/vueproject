@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CameraView from "../views/CameraView.vue";
+import ChatView from "../views/ChatView.vue";
+import ChatUnitView from "../views/ChatUnitView.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +17,15 @@ const routes = [
     path: "/camera",
     name: "camera",
     component: CameraView,
+  },
+  {
+    path: "/chat",
+    name: "chat",
+    component: ChatView,
+  },{
+    path: "/chatunit",
+    name: "chatunit",
+    component: ChatUnitView,
   },
   {
     path: "/about",

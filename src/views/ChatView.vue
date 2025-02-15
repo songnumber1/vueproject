@@ -1,7 +1,5 @@
 <template>
   <div id="app" class="d-flex flex-column h-100">
-    <!-- Header -->
-
     <div class="d-flex flex-grow-1">
       <!-- Sidebar -->
       <Sidebar />
@@ -31,17 +29,17 @@
 </template>
 
 <script>
-import Header from "./components/chat/Header.vue";
-import Sidebar from "./components/chat/Sidebar.vue";
-import Footer from "./components/chat/Footer.vue";
-import ChatBody from "./components/chat/ChatBody.vue";
+import Header from "../components/chat/Header.vue"
+import Sidebar from "../components/chat/Sidebar.vue"
+import Footer from "../components/chat/Footer.vue"
+import ChatBody from "../components/chat/ChatBody.vue"
 
 export default {
   components: {
     Header,
     Sidebar,
     Footer,
-    ChatBody,
+    ChatBody
   },
   data() {
     return {
