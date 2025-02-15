@@ -3,7 +3,8 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/chat">Chat</router-link> |
-      <router-link to="/chatunit">ChatUnit</router-link> |
+      <router-link to="/chatroom">ChatRoom</router-link> |
+      <router-link to="/notice">notice</router-link> |
       <router-link to="/about">About</router-link>
     </nav>
     <router-view/>

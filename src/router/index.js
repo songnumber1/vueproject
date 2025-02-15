@@ -3,7 +3,8 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CameraView from "../views/CameraView.vue";
 import ChatView from "../views/ChatView.vue";
-import ChatUnitView from "../views/ChatUnitView.vue";
+import ChatRoomList from "../views/ChatRoomList.vue";
+import NoticeTableView from "../views/NoticeTableView.vue";
 
 Vue.use(VueRouter);
 
@@ -22,10 +23,16 @@ const routes = [
     path: "/chat",
     name: "chat",
     component: ChatView,
-  },{
-    path: "/chatunit",
-    name: "chatunit",
-    component: ChatUnitView,
+  },
+  {
+    path: "/chatroom",
+    name: "chatroom",
+    component: ChatRoomList,
+  },
+  ,{
+    path: "/notice",
+    name: "notice",
+    component: NoticeTableView,
   },
   {
     path: "/about",
